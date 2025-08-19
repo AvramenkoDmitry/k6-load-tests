@@ -49,36 +49,31 @@ k6 run -o influxdb=http://localhost:8086/k6 scripts/smoke.js
 
 ### ✅ Smoke Test
 
-_Add your screenshot here_  
-`docs/screenshots/smoke.png`
+![Smoke Test](docs/screenshots/smoke.png)
 
 ---
 
 ### 📈 Load Test
 
-_Add your screenshot here_  
-`docs/screenshots/load.png`
+![Load Test](docs/screenshots/load.png)
 
 ---
 
 ### 🔥 Stress Test
 
-_Add your screenshot here_  
-`docs/screenshots/stress.png`
+![Stress Test](docs/screenshots/stress.png)
 
 ---
 
 ### 📊 Grafana Dashboard
 
-_Add your screenshot here_  
-`docs/screenshots/grafana-dashboard.png`
+![Grafana Dashboard](docs/screenshots/grafana-dashboard.png)
 
 ---
 
 ### ⏱ p90 Latency
 
-_Add your screenshot here_  
-`docs/screenshots/p90.png`
+![P90](docs/screenshots/p90.png)
 
 ---
 
