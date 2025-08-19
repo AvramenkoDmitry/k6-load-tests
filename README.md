@@ -2,32 +2,98 @@
 
 ![CI](https://github.com/AvramenkoDmitry/k6-load-tests/actions/workflows/ci.yml/badge.svg)
 
-Small performance test suite using [k6](https://k6.io/), targeting the public `test-api.k6.io`.
+# 📊 K6 Load & Stress Testing with Grafana + InfluxDB
 
-## ✅ Scenarios
+## 🚀 About the Project
 
-- **Smoke**: quick sanity check (`scripts/smoke.js`)
-- **Load**: step-wise load with thresholds (`scripts/load.js`)
+This project demonstrates how to perform **API load testing** with [K6](https://k6.io/), collect metrics in **InfluxDB**, and visualize results in **Grafana**.
 
-## 🧪 What we validate
+We implemented 3 types of tests:
 
-- Error rate `< 1%` (`http_req_failed`)
-- Latency P95 `smoke < 500ms`, `load < 800ms`
-- Functional checks (status, body fields)
+- 🔹 **Smoke test** – check that the API is alive and responds correctly.
+- 🔹 **Load test** – measure how the API behaves under increasing load.
+- 🔹 **Stress test** – test the system under extreme conditions.
 
-## 🚀 Run locally
+---
+
+## ⚙️ Tech Stack
+
+- [K6](https://k6.io/) – performance testing tool
+- [InfluxDB](https://www.influxdata.com/) – time-series database for metrics
+- [Grafana](https://grafana.com/) – visualization platform
+- [Docker Compose](https://docs.docker.com/compose/) – orchestration for local setup
+
+---
+
+## 📥 Setup & Run
+
+1. Start infrastructure:
 
 ```bash
-# 1) Install k6 (macOS)
-brew install k6
-# Ubuntu: sudo apt-get update && sudo apt-get install -y gnupg2 && \
-# curl -s https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg && \
-# echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | \
-# sudo tee /etc/apt/sources.list.d/k6.list && sudo apt-get update && sudo apt-get install -y k6
-
-# 2) Smoke
-k6 run scripts/smoke.js
-
-# 3) Load (with custom base url)
-BASE_URL=https://test-api.k6.io k6 run scripts/load.js
+docker compose up -d
 ```
+
+2. Run a test (example: smoke test):
+
+```bash
+k6 run -o influxdb=http://localhost:8086/k6 scripts/smoke.js
+```
+
+3. Open Grafana:  
+   👉 [http://localhost:3000](http://localhost:3000)  
+   (default credentials: `admin / admin`)
+
+---
+
+## 🧪 Test Screenshots
+
+### ✅ Smoke Test
+
+_Add your screenshot here_  
+`docs/screenshots/smoke.png`
+
+---
+
+### 📈 Load Test
+
+_Add your screenshot here_  
+`docs/screenshots/load.png`
+
+---
+
+### 🔥 Stress Test
+
+_Add your screenshot here_  
+`docs/screenshots/stress.png`
+
+---
+
+### 📊 Grafana Dashboard
+
+_Add your screenshot here_  
+`docs/screenshots/grafana-dashboard.png`
+
+---
+
+### ⏱ p90 Latency
+
+_Add your screenshot here_  
+`docs/screenshots/p90.png`
+
+---
+
+## 📌 Metrics Tracked
+
+- `http_req_duration (p90)` – 90% of requests finished faster than this time
+- `http_req_duration (avg)` – average request duration
+- `http_req_failed` – percentage of failed requests
+- `vus` – number of virtual users
+
+---
+
+## 🏁 Conclusions
+
+- ✅ The API successfully passes **smoke tests** (availability check).
+- 📈 Under moderate load, the system demonstrates stable response times.
+- 🔥 Under stress, performance decreases but the system remains operational.
+- 📊 Grafana dashboards make it easy to analyze **p95, p90, avg, max** and identify bottlenecks.
